@@ -1,0 +1,19 @@
+{
+  "_plugins.hello_world": {
+    "stability" : "stable",
+    "url": {
+      "paths": [
+        {
+          "path": "/_plugins/hello_world",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        }
+      ]
+    },
+    "body": {
+      "description": "The name to be included in the hello message"
+    }
+  }
+}
