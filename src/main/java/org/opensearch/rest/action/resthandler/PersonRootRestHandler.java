@@ -24,7 +24,7 @@ import static org.opensearch.rest.RestRequest.Method.GET;
 import static org.opensearch.rest.RestRequest.Method.POST;
 import static org.opensearch.threadpool.ThreadPool.Names.REFRESH;
 
-public class PersonRootRestHandler extends BaseRestHandler {
+public class PersonRootRestHandler extends MyRestHandler {
 
     @Override
     public List<RestHandler.Route> routes() {
@@ -39,17 +39,7 @@ public class PersonRootRestHandler extends BaseRestHandler {
     }
 
     @Override
-    protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) throws IOException {
-        return channel -> {
-            try {
-                initRequest(channel, request, client);
-            } catch (final Exception e) {
-                channel.sendResponse(new BytesRestResponse(channel, e));
-            }
-        };
-    }
-
-    private void initRequest(RestChannel restChannel, RestRequest request, NodeClient client) throws Exception {
+    protected void initRequest(RestChannel restChannel, RestRequest request, NodeClient client) throws Exception {
         switch (request.method()) {
             case POST:
                 createPerson(restChannel, request, client);
