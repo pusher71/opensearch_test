@@ -40,14 +40,14 @@ public final class PersonService {
 
     public static void getPersons(Client client, ActionListener<SearchResponse> listener) {
 
-        SearchRequest jobSearchRequest = new SearchRequest()
+        SearchRequest personSearchRequest = new SearchRequest()
                 .indices(Routing.PERSON_INDEX_NAME)
                 .source(new SearchSourceBuilder()
                         .seqNoAndPrimaryTerm(true)
                         .query(QueryBuilders.matchAllQuery())
                         .size(QSIZE));
 
-        client.search(jobSearchRequest, listener);
+        client.search(personSearchRequest, listener);
     }
 
     public static void getPerson(String id,

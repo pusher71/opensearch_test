@@ -26,7 +26,7 @@ import static org.opensearch.rest.RestRequest.Method.DELETE;
 import static org.opensearch.rest.RestRequest.Method.GET;
 import static org.opensearch.rest.RestRequest.Method.PUT;
 
-public class PersonIndexRestHandler extends BaseRestHandler {
+public class PersonIndexRestHandler extends MyRestHandler {
 
     @Override
     public List<RestHandler.Route> routes() {
@@ -42,17 +42,7 @@ public class PersonIndexRestHandler extends BaseRestHandler {
     }
 
     @Override
-    protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) throws IOException {
-        return channel -> {
-            try {
-                initRequest(channel, request, client);
-            } catch (final Exception e) {
-                channel.sendResponse(new BytesRestResponse(channel, e));
-            }
-        };
-    }
-
-    private void initRequest(RestChannel restChannel, RestRequest request, NodeClient client) throws Exception {
+    protected void initRequest(RestChannel restChannel, RestRequest request, NodeClient client) throws Exception {
         switch (request.method()) {
             case GET:
                 getPerson(restChannel, request, client);
