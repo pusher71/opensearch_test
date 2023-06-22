@@ -93,17 +93,11 @@ public class PersonRootRestHandler extends MyRestHandler {
                 StringBuilder sb = new StringBuilder();
 
                 if (searchResponse.getHits().getTotalHits().value > 0) {
-
                     sb.append("[");
-
-                    for (SearchHit hit : searchResponse.getHits()) {
-                        sb.append(hit.toString());
-                        sb.append(",");
-                    }
-
+                    for (SearchHit hit : searchResponse.getHits()) { sb.append(hit.toString() + ","); }
                     sb.deleteCharAt(sb.toString().length() - 1);
-
                     sb.append("]");
+
                     restChannel.sendResponse(new BytesRestResponse(RestStatus.OK, sb.toString()));
                 } else {
                     restChannel.sendResponse(new BytesRestResponse(RestStatus.OK, "[]"));

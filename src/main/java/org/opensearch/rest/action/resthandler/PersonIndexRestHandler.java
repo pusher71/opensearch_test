@@ -65,7 +65,7 @@ public class PersonIndexRestHandler extends MyRestHandler {
         String id = request.param("id");
 
         if (id == null) {
-            throw new IllegalArgumentException("Must specify id");
+            throw new IllegalArgumentException("Must specify id.");
         }
 
         WriteRequest.RefreshPolicy refreshPolicy = WriteRequest.RefreshPolicy.parse(request.param(REFRESH,
@@ -91,7 +91,7 @@ public class PersonIndexRestHandler extends MyRestHandler {
         String id = request.param("id");
 
         if (id == null) {
-            throw new IllegalArgumentException("Must specify id");
+            throw new IllegalArgumentException("Must specify id.");
         }
 
         PersonService.getPerson(id, client, new ActionListener<SearchResponse>() {

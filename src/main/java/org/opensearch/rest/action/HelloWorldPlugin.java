@@ -19,6 +19,7 @@ import org.opensearch.rest.RestController;
 import org.opensearch.rest.RestHandler;
 import org.opensearch.rest.action.resthandler.PersonIndexRestHandler;
 import org.opensearch.rest.action.resthandler.PersonRootRestHandler;
+import org.opensearch.rest.action.resthandler.PersonStatisticsRestHandler;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +38,8 @@ public class HelloWorldPlugin extends Plugin implements ActionPlugin {
 
         return Arrays.asList(
                 new PersonIndexRestHandler(),
-                new PersonRootRestHandler()
+                new PersonRootRestHandler(),
+                new PersonStatisticsRestHandler()
         );
     }
 }

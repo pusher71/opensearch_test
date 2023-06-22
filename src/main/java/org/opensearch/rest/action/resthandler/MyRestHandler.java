@@ -9,15 +9,10 @@ import org.opensearch.rest.RestRequest;
 import java.util.Map;
 
 public abstract class MyRestHandler extends BaseRestHandler {
-
-    private void consumeAllParamsWorkaround(RestRequest request) {
-        Map<String, String> params = request.params();
-        params.forEach((k, v) -> request.param(k));
-    }
-
     @Override
     protected RestChannelConsumer prepareRequest(RestRequest request, NodeClient client) {
-        consumeAllParamsWorkaround(request);
+        request.params().forEach((k, v) -> request.param(k)); // Consume all parameters workaround
+
         return channel -> {
             try {
                 initRequest(channel, request, client);
